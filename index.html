@@ -1,0 +1,1197 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://6.869.csail.mit.edu/fa19/schedule.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="https://fonts.cdnfonts.com/css/caveat" rel="stylesheet">
+<style>
+    @import url('https://fonts.cdnfonts.com/css/caveat');
+</style>
+<!-- <script src="./assets/teaser-data.js"></script> -->
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Custom-Style-Editing</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <meta name="description"
+        content="Project page for &#39;Custom-Style-Editing: Controlling Style Information with Cross-denoising Diffusion Model for General Video Editing.&#39;">
+    <!-- <link rel="icon" href="./assets/showlab.ico"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <p class="title">Custom-Style-Editing: <br> Controlling Style Information with Cross-denoising Diffusion Model for General Video Editing</p>
+    <p class="menu">
+        <a style="color: steelblue" href="">[Paper]</a> 
+        <a style="color: steelblue" href="">[Supplementary Materials]</a>
+        <a style="color: steelblue" href="" >[Code]</a>
+        <a style="color: steelblue" href="">[Demo]</a>        
+    </p>
+    <!-- <p class="author">
+        <span class="author">
+            <a href="https://scholar.google.com/citations?user=OpIVjJkAAAAJ&hl=zh-CN&oi=ao">Chen Chen</a><sup>1</sup>
+        </span>
+        <span class="author">
+            <a href="">Mengjie Bian</a><sup>1</sup>
+        </span>
+        <span class="author">
+            <a href="https://scholar.google.com/citations?user=L5Va8t0AAAAJ&hl=zh-CN&oi=ao">Bin Song</a><sup>1</sup>
+        </span>
+        <span class="author">
+            <a href="https://scholar.google.com/citations?user=VZVTOOIAAAAJ&hl=zh-CN">Xinbo Gao</a><sup>2</sup>
+        </span>
+    </p>
+    
+    <p class="affiliations">
+        <span class="author"><sup>1 </sup>Xidian University</span>
+        <span class="author"><sup>2 </sup>Chongqing University of Posts and Telecommunications</span><br>
+    </p>     -->
+    \<br>
+    \<br>
+    \<br>
+    <p style="text-align: center;"><span class="section"><b>Visualization of basic functions</b></span></p>
+    <div class="container">
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                    <div id="imageCarousel" class="carousel slide teaser-carousel" data-ride="carousel" data-interval="5000">
+                        <div class="carousel-inner">
+                            <!-- Basketball -->
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img" src="./assets/visual_results/all/carturn.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img" src="./assets/visual_results/all/text.gif" />
+                                </div>
+                                <div>
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text): "a suv drving in the snow."</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                    <div id="imageCarousel1" class="carousel slide teaser-carousel" data-ride="carousel" data-interval="5000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/all/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/all/carturn.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/all/text+style.gif" />
+                                </div>
+                                <div>
+                                    
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "a suv drving in the snow."</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                    <div id="imageCarousel1" class="carousel slide teaser-carousel" data-ride="carousel" data-interval="5000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/all/ref.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/all/carturn.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/all/text+ref.gif" />
+                                </div>
+                                <div>
+                                    
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist): "a suv drving in the snow."</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                    <div id="imageCarousel1" class="carousel slide teaser-carousel" data-ride="carousel" data-interval="5000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img3" src="./assets/visual_results/all/ref.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img3" src="./assets/visual_results/all/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img4" src="./assets/visual_results/all/carturn.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/all/our.gif" />
+                                </div>
+                                <div>
+                                    
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a suv drving in the snow."</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        <p style="text-align: center;"><span class="section"><b>Abstract</b></span></p>
+        
+            <body>
+                <p>In recent years, text-image joint-driven video editing based on diffusion models has achieved great success. With the increasing users' demand for video editing (changing the protagonist or style of the video by inputting images), a single text description for video editing has been unable to meet users' needs. However, none of the current video editing technologies can achieve custom video style editing by inputting images.
+                <p>In this work, we introduce an innovative general video editing framework named <strong>Custom-Style-Editing</strong>.
+                <ol>
+                    <li>
+                        Our core framework is to extract style information by randomly selecting a block of a style image and then fusing it with text information through the BLIP network to obtain <strong>the style control signal</strong>. Similarly, we can get <strong>a reference protagonist control signal</strong>. Finally, video editing is accomplished by jointly guiding the diffusion model through style and protagonist control signals.
+                    </li>
+            
+                    <li>
+                        In addition, we find a conflict between the two signals during the denoising process. When two kinds of signals guide denoising at the same time, one of them cannot be introduced into the generated video. Therefore, we designed <strong>a cross-denoising method</strong>. During the denoising process, the two signals guide denoising alternately, so the final generated video can contain the changed protagonist and perfectly integrate the style. Our method is comprehensively evaluated on different video data.
+                    </li>
+                </ol>
+            
+                <p>Compared with the existing methods, we have more abundant video editing functions, and we have shown better performance in visual consistency quality.
+
+            </body>    
+        </br>
+        </br>
+        </br>
+        <p class="section"><b>Introduction</b></p>
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Video Player</title>
+        </head>
+        <body>
+        <div style="text-align: center">    
+        <video width="900px" height=auto controls>
+        <source src="./assets/video.mp4" type="video/mp4">
+        </video>
+        </div>
+        </body>
+        </html>
+
+        <!-- <div style="text-align: center">
+            <video id="myVideo" autoplay loop muted style="max-width: 100%; height: auto;">
+                <source src="./assets/new.mp4" type="video/mp4" alt="" width="1080px">
+            </video>
+        </div> -->
+        </br>
+        </br>       
+        </br>
+        </br>
+        <p class="section"><b>Method</b></p>
+        <div style="text-align: center">
+            <img src="./assets/1.bmp" alt="" width="1000px" style="max-width: 100%; height: auto;" />
+        </div>
+        </br>
+        <p style="text-align: center">
+            <em>Custom-Style-Editing: A new paradigm for general video editing with cross-denoising diffusion models.
+        </p>
+        
+        <p class="section">&nbsp;</p>
+
+        </br>
+        <p class="section"><b>Results</b></p>
+        <!-- <div style="text-align: center">
+            <img src="./sm/assets/results.jpg" alt="" width="850" style="margin: auto" />
+        </div> -->
+
+        </br>
+        <p style="text-align: center; font-size: 150%">Sample results of our method by using style images and normal texts.</p>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/all/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/all/carturn.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/all/text+style.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>a suv drving in the snow.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                 
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A red suv driving in the snow-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-A red suv driving in the snow-1/carturn.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-A red suv driving in the snow-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A red suv driving in the snow.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A red suv driving on the mountain road-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-A red suv driving on the mountain road-1//carturn.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-A red suv driving on the mountain road-1/A red suv driving on a mountain road.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A red suv driving on the mountain road.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-a bear walking across the desert-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-a bear walking across the desert-1/polar_bear.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-a bear walking across the desert-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>a bear walking across the desert.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                 
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-a flame turtle swimming in the lake-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-a flame turtle swimming in the lake-1/turtle.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-a flame turtle swimming in the lake-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>a turtle swimming in the lake.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-a man in black suit parkouring on a railing-1/style.jpeg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-a man in black suit parkouring on a railing-1/parkour.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-a man in black suit parkouring on a railing-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>a man in black suit parkouring on a railing.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A parrot flying in the sky-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-A parrot flying in the sky-1/bird.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-A parrot flying in the sky-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A parrot flying in the sky.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A Shiba Inu walking on the grass-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-A Shiba Inu walking on the grass-1/wolf4.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-A Shiba Inu walking on the grass-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A Shiba Inu walking on the grass.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A Shiba Inu walking on the grass-3/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-A Shiba Inu walking on the grass-3/wolf4.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-A Shiba Inu walking on the grass-3/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A Shiba Inu walking on the grass.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A Shiba Inu walking on the grass-2/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-A Shiba Inu walking on the grass-2/wolf3.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-A Shiba Inu walking on the grass-2/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A Shiba Inu walking on the grass.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A suv driving on the road-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-A suv driving on the road-1/carshadow.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-A suv driving on the road-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A suv driving on the road.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-a white duck swimming in a pond-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-img2" src="./assets/visual_results/s-a white duck swimming in a pond-1/mallard.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-img2" src="./assets/visual_results/s-a white duck swimming in a pond-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>a white duck swimming in a pond.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+        </br>
+        <table width="1080px" border="0" align="center">
+            <tbody>
+                <tr>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img1" src="./assets/visual_results/s-A red train going down the snow street-1/style.jpg" />
+                                    <span style="font-size: 130%;">+</span>
+                                    <img class="teaser-imgt" src="./assets/visual_results/s-A red train going down the snow street-1/train.gif" />
+                                    <span style="font-size: 130%;">→</span>
+                                    <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                    <span style="font-size: 150%;">→</span> -->
+                                    <img id="eagle-result" class="teaser-imgt" src="./assets/visual_results/s-A red train going down the snow street-1/our.gif" />
+                                </div>
+                                <div> 
+                                    <div class="caption" id="eagle-beach">
+                                        <span style="font-weight: 1000">General Video Editing (Text + Style): "<span>A red train going down the snow street.</span>"
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                </tr>
+                <tr> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+
+    </br>
+    </br>
+    <p style="text-align: center; font-size: 150%">Sample results of our method by using style images, reference protagonist images and normal texts.</p>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/all/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/all/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/all/carturn.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/all/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a suv drving in the snow."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>    
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a bear walking across the desert-1/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a bear walking across the desert-1/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a bear walking across the desert-1/polar_bear.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a bear walking across the desert-1/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a bear walking across the desert."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table> 
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a bear walking across the desert-2/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a bear walking across the desert-2/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a bear walking across the desert-2/polar_bear.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a bear walking across the desert-2/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a bear walking across the desert."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table> 
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-1/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-1/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-1/wolf4.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-1/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a dog walking on the grass."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table> 
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-4/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-4/style.jpeg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-4/wolf4.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-4/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a dog walking on the grass."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table> 
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-2/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-2/style.jpeg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-2/wolf3.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-2/cross.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a dog walking on the grass."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table> 
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-3/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a dog walking on the grass-3/style.png" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-3/wolf3.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a dog walking on the grass-3/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a dog walking on the grass."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table> 
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a duck swimming in a pond-1/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a duck swimming in a pond-1/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a duck swimming in a pond-1/mallard.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a duck swimming in a pond-1/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a duck swimming in a pond."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a duck swimming in a pond-2/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a duck swimming in a pond-2/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a duck swimming in a pond-2/mallard.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a duck swimming in a pond-2/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a duck swimming in a pond."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a man parkouring on a railing -1/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-a man parkouring on a railing -1/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-a man parkouring on a railing -1/parkour.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-a man parkouring on a railing -1/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "a man parkouring on a railing."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A suv driving in the snow-1/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A suv driving in the snow-1/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-A suv driving in the snow-1/carturn.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-A suv driving in the snow-1/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "A suv driving in the snow."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A suv driving on the road-1/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A suv driving on the road-1/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-A suv driving on the road-1/carshadow.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-A suv driving on the road-1/dct-A-suv-driving-on-the-road.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "A suv driving on the road."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A suv driving on the road-2/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A suv driving on the road-2/style.jpeg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-A suv driving on the road-2/carshadow.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-A suv driving on the road-2/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "A suv driving on the road."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A turtle swimming in the lake-1/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A turtle swimming in the lake-1/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-A turtle swimming in the lake-1/turtle.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-A turtle swimming in the lake-1/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "A turtle swimming in the lake."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+    </br>    
+    <table width="1080px" border="0" align="center">
+        <tbody>
+            <tr>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A turtle swimming in the lake-2/ref.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img3" src="./assets/visual_results/sr-A turtle swimming in the lake-2/style.jpg" />
+                                <span style="font-size: 130%;">+</span>
+                                <img class="teaser-img4" src="./assets/visual_results/sr-A turtle swimming in the lake-2/turtle.gif" />
+                                <span style="font-size: 130%;">→</span>
+                                <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                                <span style="font-size: 150%;">→</span> -->
+                                <img id="eagle-result" class="teaser-img4" src="./assets/visual_results/sr-A turtle swimming in the lake-2/our.gif" />
+                            </div>
+                            <div>
+                                <div class="caption" id="eagle-beach">
+                                    <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "A turtle swimming in the lake."</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            </tr>
+            <tr> </tr>
+            <tr align="center"></tr>
+        </tbody>
+    </table>
+
+</br>    
+<table width="1080px" border="0" align="center">
+    <tbody>
+        <tr>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div>
+                            <img class="teaser-img3" src="./assets/visual_results/sr-A red train going down the snow street-2/ref.jpg" />
+                            <span style="font-size: 130%;">+</span>
+                            <img class="teaser-img3" src="./assets/visual_results/sr-A red train going down the snow street-2/style.jpg" />
+                            <span style="font-size: 130%;">+</span>
+                            <img class="teaser-imgt" src="./assets/visual_results/sr-A red train going down the snow street-2/train.gif" />
+                            <span style="font-size: 130%;">→</span>
+                            <!-- <img id="ikun-ref" class="teaser-img" src="./assets/reference_new/car-turn/suv2.jpg" />
+                            <span style="font-size: 150%;">→</span> -->
+                            <img id="eagle-result" class="teaser-imgt" src="./assets/visual_results/sr-A red train going down the snow street-2/our.gif" />
+                        </div>
+                        <div>
+                            <div class="caption" id="eagle-beach">
+                                <span style="font-weight: 1000">General Video Editing (Text + Reference protagonist + Style): "A red train going down the snow street."</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        </tr>
+        <tr> </tr>
+        <tr align="center"></tr>
+    </tbody>
+</table>
+
+    </div>
+    </br> 
+    <footer class="footer">
+        <p style="text-align: center;">
+            This page was adapted from <a href="https://tuneavideo.github.io/">Tune-A-Video</a>.
+        </p>
+    </footer>
+
+
+</body>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WLX2Z5QLG8');
+ </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script type="text/javascript">
+    $(document).ready(function () {
+
+        if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
+            $(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
+        }
+
+        $(window).on("scroll", function() {
+            localStorage.setItem("my_app_name_here-quote-scroll", $(window).scrollTop());
+        });
+
+      });
+ </script>
+
+ <script>
+    function prompt_on(prompt_element) {
+        prompt_element.classList.add("caption-active");
+    }
+
+    function prompt_off(prompt_element) {
+        prompt_element.classList.remove("caption-active");
+    }
+
+    function toggle_prompt(active_prompt_id, inactive_prompt_ids, result_id) {
+        let active_prompt = document.getElementById(active_prompt_id);
+        prompt_on(active_prompt);
+        for (let i = 0; i < inactive_prompt_ids.length; i++) {
+            let inactive_prompt = document.getElementById(inactive_prompt_ids[i]);
+            prompt_off(inactive_prompt);
+        }
+
+        let result = document.getElementById(result_id);
+        result.src = file_paths[active_prompt_id];
+    }
+
+    function toggle_prompts(active_prompt_id1, active_prompt_id2, inactive_prompt_ids1, inactive_prompt_ids2, result_id1, result_id2 ) {
+    toggle_prompt(active_prompt_id1, inactive_prompt_ids1, result_id1);
+    toggle_prompt(active_prompt_id2, inactive_prompt_ids2, result_id2);
+    }
+
+
+ </script>
+
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
